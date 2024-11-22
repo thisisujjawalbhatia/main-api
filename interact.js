@@ -273,33 +273,43 @@ module.exports = {
 // }
 // testPayToll();
 
+// const vehicleOwner = "0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D";
+//     const vehiclePrivateKey = "0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9";
+    
+//     const tollBoothOwner = "0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d";
+//     const tollBoothPrivateKey = "0x52583753ca0377b0206e60df10880c549e50a362803b14d97fe995cb6fab5ded";
+   
 
 async function testAll() {
-    // Test vehicle registration
-    const vehicleOwner = "0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D";
-    const vehiclePrivateKey = "0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9";
-    
-    const tollBoothOwner = "0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d";
-    const tollBoothPrivateKey = "0x52583753ca0377b0206e60df10880c549e50a362803b14d97fe995cb6fab5ded";
-    
-    try {
-        // Register vehicle
-        console.log("Registering vehicle...");
-        await registerVehicle(vehicleOwner, vehicleOwner, vehiclePrivateKey);
-        
-        // Register toll booth
-        console.log("Registering toll booth...");
-        await registerTollBooth(tollBoothOwner, 2, tollBoothOwner, tollBoothPrivateKey);
-        
-        // Check toll amount
-        console.log("Checking toll amount...");
-        const tollAmount = await checkTollAmount(tollBoothOwner);
-        console.log("Toll amount:", tollAmount);
-        
-        // Pay toll
-        console.log("Paying toll...");
-        await payToll(vehicleOwner, tollBoothOwner, vehicleOwner, vehiclePrivateKey, 2);
-    } catch (error) {
-        console.error("Test failed:", error);
-    }
+  // Test vehicle registration
+  const vehicleOwner = "0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D";
+  const vehiclePrivateKey = "0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9";
+  
+  const tollBoothOwner = "0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d";
+  const tollBoothPrivateKey = "0x52583753ca0377b0206e60df10880c549e50a362803b14d97fe995cb6fab5ded";
+  
+  try {
+      // Register vehicle
+      console.log("Registering vehicle...");
+      await registerVehicle(vehicleOwner, vehicleOwner, vehiclePrivateKey);
+      
+      // Register toll booth
+      console.log("Registering toll booth...");
+      await registerTollBooth(tollBoothOwner, 2, tollBoothOwner, tollBoothPrivateKey);
+      
+      // Check toll amount
+      console.log("Checking toll amount...");
+      const tollAmount = await checkTollAmount(tollBoothOwner);
+      console.log("Toll amount:", tollAmount);
+      
+      // Pay toll
+      console.log("Paying toll...");
+      await payToll(vehicleOwner, tollBoothOwner, vehicleOwner, vehiclePrivateKey, 2);
+  } catch (error) {
+      console.error("Test failed:", error);
+  }
 }
+
+
+
+registerVehicle();
