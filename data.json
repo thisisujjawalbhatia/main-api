@@ -1,0 +1,47 @@
+{
+    "mainAccount":{
+      "public": "0xb69C7E1265Dd03E5E078373D173aA1C389d30Ae3",
+      "private": "0xaa63eec72e109086157000b967fa2a7e8ef082c6fbb4999070a6e2330946514f"
+    },
+    "availableAccounts":[
+      {
+        "public": "0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D",
+        "private": "0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9"
+      },
+      {
+        "public": "0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d",
+        "private": "0x52583753ca0377b0206e60df10880c549e50a362803b14d97fe995cb6fab5ded"
+      },
+      {
+        "public": "0xaf4D4368E28Cd4cEd283BE1B8B074B1fd7C24A3E",
+        "private": "0x19ac420e7a0abdb66339f3c74981e6bc883db8d2bc410b5cd26c33931ed3c45c"
+      },
+      {
+        "public": "0xa7DE0CcA28048Dc417538B67B107dA944E5e1261",
+        "private": "0x562c6afafd50676107e816dad8eb19975ad4e19130f4c065fddc274f2fe219e4"
+      },
+      {
+        "public": "0x6B7cFCDECE05923D416001586dbda537D7e7C591",
+        "private": "0x52ef0f53769049f7a6b09ef75221efda606efd41e3eaf88e8008af9bc72d87ba"
+      },
+      {
+        "public": "0x07e09A1bEC88f61235e872EdAAb689193b1A2DFC",
+        "private": "0x375d59a543fcf2f675c140b01d788c91073cefd58cf210ec7494a850f27bcfd3"
+      },
+      {
+        "public": "0x752EC5e861F13E9d8868E09236C6A5593df3c7e8",
+        "private": "0xa8e5f0c4a22e2be8c12340d68bc208ea7a4c9fcf8a8c6efc7a5bed4d18b0ccb0"
+      },
+      {
+        "public": "0xfc8C7b5ce79Fe005224c7Aa2633DDC5d86946A8D",
+        "private": "0xc0fb59acc61f181240ffce96035d56641d1f5036b8af2199308b8c07ce4e712c"
+      },
+      {
+        "public": "0x542091e7a7Efc771214cDc2A5041b976f9cd2C63",
+        "private": "0xbb5c1a3aace2c7c1c798b963f18e3ffc6ad66eab8e37c3853c696c8bcc04b4b4"
+      }
+    ],
+    "assignedAccounts":[
+  
+    ]
+  }
