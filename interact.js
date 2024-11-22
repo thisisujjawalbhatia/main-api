@@ -181,24 +181,59 @@ async function registerVehicle(vehicleOwner, senderAddress, privateKey) {
     console.log('Transaction receipt:', receipt);
 }
 
+// async function registerTollBooth(tollBoothOwner, tollAmount, senderAddress, privateKey) {
+//     const tx = await contract.methods.registerTollBooth(tollBoothOwner, tollAmount);
+//     const gas = await tx.estimateGas({ from: senderAddress, value: 0});
+//     const receipt = await tx.send({ from: privateKey, gas });
+//     console.log('Transaction receipt:', receipt);
+// }
+
 async function registerTollBooth(tollBoothOwner, tollAmount, senderAddress, privateKey) {
-    const tx = await contract.methods.registerTollBooth(tollBoothOwner, tollAmount);
-    const gas = await tx.estimateGas({ from: senderAddress, value: 0});
-    const receipt = await tx.send({ from: privateKey, gas });
-    console.log('Transaction receipt:', receipt);
+  try {
+      const methodCall = contract.methods.registerTollBooth(tollBoothOwner, tollAmount);
+      const receipt = await sendTransaction(methodCall, senderAddress, privateKey);
+      console.log('Toll Booth Registration Receipt:', receipt);
+      return receipt;
+  } catch (error) {
+      console.error('Error registering toll booth:', error);
+      throw error;
+  }
 }
+
+// async function payToll(vehicleOwner, tollBoothOwner, senderAddress, privateKey, tollAmount) {
+//     const tx = await contract.methods.payToll(vehicleOwner, tollBoothOwner);
+//     const gas = await tx.estimateGas({ from: senderAddress, value: web3.utils.toWei(tollAmount.toString(), 'ether')});
+//     const receipt = await tx.send({ from: privateKey, gas });
+//     console.log('Transaction receipt:', receipt);
+//     // return sendTransaction(tx, senderAddress, privateKey);
+// }
 
 async function payToll(vehicleOwner, tollBoothOwner, senderAddress, privateKey, tollAmount) {
-    const tx = await contract.methods.payToll(vehicleOwner, tollBoothOwner);
-    const gas = await tx.estimateGas({ from: senderAddress, value: web3.utils.toWei(tollAmount.toString(), 'ether')});
-    const receipt = await tx.send({ from: privateKey, gas });
-    console.log('Transaction receipt:', receipt);
-    // return sendTransaction(tx, senderAddress, privateKey);
+  try {
+      const methodCall = contract.methods.payToll(vehicleOwner, tollBoothOwner);
+      const value = web3.utils.toWei(tollAmount.toString(), 'ether');
+      const receipt = await sendTransaction(methodCall, senderAddress, privateKey, value);
+      console.log('Toll Payment Receipt:', receipt);
+      return receipt;
+  } catch (error) {
+      console.error('Error paying toll:', error);
+      throw error;
+  }
 }
 
+// async function checkTollAmount(tollBoothOwner) {
+//     return await contract.methods.checkTollAmount(tollBoothOwner).call();
+// }
 async function checkTollAmount(tollBoothOwner) {
-    return await contract.methods.checkTollAmount(tollBoothOwner).call();
+  try {
+      const amount = await contract.methods.checkTollAmount(tollBoothOwner).call();
+      return amount;
+  } catch (error) {
+      console.error('Error checking toll amount:', error);
+      throw error;
+  }
 }
+
 
 async function sendTransaction(tx, senderAddress, privateKey) {
     const txData = {
@@ -218,11 +253,11 @@ module.exports = {
     checkTollAmount,
 };
 // registered id 1 as vehicle
-const testVehicleRegistration = async() =>{
-    let x = registerVehicle("0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D","0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D","0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9")
-    console.log(x);
-}
-testVehicleRegistration();
+// const testVehicleRegistration = async() =>{
+//     let x = registerVehicle("0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D","0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D","0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9")
+//     console.log(x);
+// }
+// testVehicleRegistration();
 
 // registered id 2 as toll booth
 // const testTollBoothRegistration = async() =>{
@@ -237,3 +272,34 @@ testVehicleRegistration();
 //     console.log(x);
 // }
 // testPayToll();
+
+
+async function testAll() {
+    // Test vehicle registration
+    const vehicleOwner = "0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D";
+    const vehiclePrivateKey = "0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9";
+    
+    const tollBoothOwner = "0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d";
+    const tollBoothPrivateKey = "0x52583753ca0377b0206e60df10880c549e50a362803b14d97fe995cb6fab5ded";
+    
+    try {
+        // Register vehicle
+        console.log("Registering vehicle...");
+        await registerVehicle(vehicleOwner, vehicleOwner, vehiclePrivateKey);
+        
+        // Register toll booth
+        console.log("Registering toll booth...");
+        await registerTollBooth(tollBoothOwner, 2, tollBoothOwner, tollBoothPrivateKey);
+        
+        // Check toll amount
+        console.log("Checking toll amount...");
+        const tollAmount = await checkTollAmount(tollBoothOwner);
+        console.log("Toll amount:", tollAmount);
+        
+        // Pay toll
+        console.log("Paying toll...");
+        await payToll(vehicleOwner, tollBoothOwner, vehicleOwner, vehiclePrivateKey, 2);
+    } catch (error) {
+        console.error("Test failed:", error);
+    }
+}
