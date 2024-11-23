@@ -312,4 +312,4 @@ async function testAll() {
 
 
 
-registerVehicle();
+testAll();
