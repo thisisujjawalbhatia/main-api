@@ -344,44 +344,44 @@ async function checkTollAmount(tollBoothOwner) {
 }
 
 // Comprehensive Test Function
-async function runFullTest() {
-    try {
-        console.log('===== FULL BLOCKCHAIN API TEST =====');
+// async function runFullTest() {
+//     try {
+//         console.log('===== FULL BLOCKCHAIN API TEST =====');
         
-        // Test addresses and keys (replace with your actual test addresses)
-        const vehicleOwner = "0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D";
-        const vehiclePrivateKey = "0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9";
+//         // Test addresses and keys (replace with your actual test addresses)
+//         const vehicleOwner = "0x6ECFF40f6Cb22f1533c0aa4150a5D772266e4D8D";
+//         const vehiclePrivateKey = "0xb8b9e83dc9da8c91db469895f4ff67a60d51459907f1897d3e577b8c0a3d7fd9";
         
-        const tollBoothOwner = "0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d";
-        const tollBoothPrivateKey = "0x52583753ca0377b0206e60df10880c549e50a362803b14d97fe995cb6fab5ded";
+//         const tollBoothOwner = "0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d";
+//         const tollBoothPrivateKey = "0x52583753ca0377b0206e60df10880c549e50a362803b14d97fe995cb6fab5ded";
         
-        // 1. Register Vehicle
-        console.log('\n--- Registering Vehicle ---');
-        await registerVehicle(vehicleOwner, vehicleOwner, vehiclePrivateKey);
+//         // 1. Register Vehicle
+//         console.log('\n--- Registering Vehicle ---');
+//         await registerVehicle(vehicleOwner, vehicleOwner, vehiclePrivateKey);
         
-        // 2. Register Toll Booth
-        console.log('\n--- Registering Toll Booth ---');
-        await registerTollBooth(tollBoothOwner, 2, tollBoothOwner, tollBoothPrivateKey);
+//         // 2. Register Toll Booth
+//         console.log('\n--- Registering Toll Booth ---');
+//         await registerTollBooth(tollBoothOwner, 2, tollBoothOwner, tollBoothPrivateKey);
         
-        // 3. Check Toll Amount
-        console.log('\n--- Checking Toll Amount ---');
-        const tollAmount = await checkTollAmount(tollBoothOwner);
+//         // 3. Check Toll Amount
+//         console.log('\n--- Checking Toll Amount ---');
+//         const tollAmount = await checkTollAmount(tollBoothOwner);
         
-        // 4. Pay Toll
-        console.log('\n--- Paying Toll ---');
-        await payToll(
-            vehicleOwner, 
-            tollBoothOwner, 
-            vehicleOwner, 
-            vehiclePrivateKey, 
-            tollAmount
-        );
+//         // 4. Pay Toll
+//         console.log('\n--- Paying Toll ---');
+//         await payToll(
+//             vehicleOwner, 
+//             tollBoothOwner, 
+//             vehicleOwner,
+//             vehiclePrivateKey, 
+//             tollAmount
+//         );
         
-        console.log('\n===== TEST COMPLETED SUCCESSFULLY =====');
-    } catch (error) {
-        console.error('Full Test Failed:', error);
-    }
-}
+//         console.log('\n===== TEST COMPLETED SUCCESSFULLY =====');
+//     } catch (error) {
+//         console.error('Full Test Failed:', error);
+//     }
+// }
 
 // Export functions
 module.exports = {
@@ -389,8 +389,8 @@ module.exports = {
     registerTollBooth,
     payToll,
     checkTollAmount,
-    runFullTest
 };
-
+// let amt = checkTollAmount("0xc4045F2F68F7A9c9b42DDfd089D22A67EEA5DA0d")
+// console.log(amt);
 // Uncomment to run test immediately
- runFullTest();
+//  runFullTest();

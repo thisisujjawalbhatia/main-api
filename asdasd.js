@@ -92,35 +92,6 @@ app.post('/addFunds', async (req, res) => {
 
 });
 
-app.post('/payToll', async (req, res) => {
-    const { userId,tollId } = req.body;
-
-        try{
-            const userAccount = getUserAccount(userId);
-            const tollAccount = getTollAccount(tollId);
-
-            if(!userAccount || !tollAccount){
-                throw new Error("Invalid user account, tollAccount");
-            }
-
-            if(!tollAccount){
-                throw new Error("Invalid tollAccount");   
-            }
-            const tollAmount = await checkTollAmount(tollAccount.publicKey);
-            await payToll(
-                userAccount.publicKey, 
-                tollAccount.publicKey, 
-                userAccount.publicKey, 
-                userAccount.privateKey, 
-                tollAmount
-            );
-            res.status(200).json({ message: "payment successful" });
-
-
-        } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 
 
 // Start the server
